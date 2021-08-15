@@ -52,23 +52,38 @@ class SetCardGame: ObservableObject {
         }
     }
     
-    func shadowColor(_ card: Card) -> Color {
-        if card.isMatched { return .green }
+    func chooseShadowColor(for card: Card) -> Color {
+        if card.isDiscarded { return .clear }
+        else if card.isMatched { return .green }
         else if card.isNotMatched { return .red }
         else { return .gray }
     }
     
     // MARK: - Access to the Model
     
-    var cards: [Card] { model.cards }
+    var cards: [Card] {
+        model.cards
+    }
     
-    var deck: [Card] { model.deck }
+    var undealtCards: [Card] {
+        model.undealtCards
+    }
+    
+    var discardPile: [Card] {
+        model.discardPile
+    }
     
     // MARK: - Intents
     
-    func choose(_ card: Card) { model.choose(card) }
+    func choose(_ card: Card) {
+        model.choose(card)
+    }
     
-    func deal(_ numberOfCards: Int) { model.deal(numberOfCards) }
+    func deal(_ numberOfCards: Int? = nil) {
+        model.deal(numberOfCards)
+    }
     
-    func startNewGame() { model = SetCardGame.createSetGame() }
+    func restart() {
+        model = SetCardGame.createSetGame()
+    }
 }

@@ -44,13 +44,14 @@ struct Deck {
             case pink = 1, green, purple
         }
         
-        static func match(cards: [Self]) -> Bool {
+        static func findMatch(in cards: [Self]) -> Bool {
             guard cards.reduce(0, { $0 + $1.numberOfShapes }).isMultiple(of: 3),
                   cards.reduce(0, {$0 + $1.color.rawValue }).isMultiple(of: 3),
                   cards.reduce(0, {$0 + $1.shape.rawValue }).isMultiple(of: 3),
                   cards.reduce(0, {$0 + $1.shading.rawValue }).isMultiple(of: 3)
-            else { return false }
-            
+            else {
+                return false
+            }
             return true
         }
     }

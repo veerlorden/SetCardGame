@@ -20,6 +20,7 @@
 		DDA0AEF3269C96C000112766 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0AEF2269C96C000112766 /* AspectVGrid.swift */; };
 		DDA0AEF7269C99B300112766 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0AEF6269C99B300112766 /* Deck.swift */; };
 		DDA0AEF9269CBC9100112766 /* SetCardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0AEF8269CBC9100112766 /* SetCardGame.swift */; };
+		DDA7C2E326C6BD37009CF65B /* Cardify.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA7C2E226C6BD37009CF65B /* Cardify.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		DDA0AEF2269C96C000112766 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		DDA0AEF6269C99B300112766 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		DDA0AEF8269CBC9100112766 /* SetCardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardGame.swift; sourceTree = "<group>"; };
+		DDA7C2E226C6BD37009CF65B /* Cardify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cardify.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				DD153D7526A876C000E21143 /* StripedRect.swift */,
 				DD153D7726A87DC100E21143 /* CardView.swift */,
 				DD153D7926A8856E00E21143 /* Shape+Extension.swift */,
+				DDA7C2E226C6BD37009CF65B /* Cardify.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				DD4777C926A5D32F0054557E /* Squiggle.swift in Sources */,
 				DDA0AEF9269CBC9100112766 /* SetCardGame.swift in Sources */,
 				DD4C57DF2690C2C500A98F32 /* SetCardGameView.swift in Sources */,
+				DDA7C2E326C6BD37009CF65B /* Cardify.swift in Sources */,
 				DD153D7A26A8856F00E21143 /* Shape+Extension.swift in Sources */,
 				DD4C57DD2690C2C500A98F32 /* SetApp.swift in Sources */,
 				DD153D7626A876C000E21143 /* StripedRect.swift in Sources */,

@@ -6,22 +6,19 @@
 //
 
 protocol Matchable {
-    static func match(cards: [Self]) -> Bool
+    static func findMatch(in cards: [Self]) -> Bool
 }
 
 struct SetGame<CardContent> where CardContent: Matchable {
     
-    private(set) var deck: [Card]
+    private(set) var undealtCards: [Card]
     private(set) var cards: [Card]
+    private(set) var discardPile: [Card]
     private(set) var numberOfCardsFromStart: Int
     private(set) var numberOfCardsToDeal: Int
     
     private var indicesOfSelectedCards: [Int] {
         cards.indices.filter { cards[$0].isSelected }
-    }
-    
-    private var indicesOfMatchedCards: [Int] {
-        cards.indices.filter { cards[$0].isMatched }
     }
     
     private var matchedCards: [Card] {
@@ -36,7 +33,7 @@ struct SetGame<CardContent> where CardContent: Matchable {
                !card.isMatched {
                 cards[chosenIndex].isSelected = true
                 // Full match, 3 cards form a set
-                if CardContent.match(cards: indicesOfSelectedCards.map { cards[$0].content }) {
+                if CardContent.findMatch(in: indicesOfSelectedCards.map { cards[$0].content }) {
                     indicesOfSelectedCards.forEach { cards[$0].isMatched = true }
                 }
                 // Mismatch
@@ -47,7 +44,13 @@ struct SetGame<CardContent> where CardContent: Matchable {
             // Three cards already selected, we're tapping the fourth one
             else if indicesOfSelectedCards.count == 3 {
                 // Three cards formed a set
-                if indicesOfMatchedCards.count == 3 {
+                if matchedCards.count == 3 {
+                    indicesOfSelectedCards.forEach {
+                        cards[$0].isDiscarded = true
+                        cards[$0].isSelected = false
+                    }
+                    discardPile += matchedCards
+                    cards = cards.filter { !matchedCards.contains($0) }
                     
                     if let selectedCardIndex = cards.firstIndex(where: { $0.id == card.id }) {
                         cards[selectedCardIndex].isSelected = true
@@ -56,8 +59,8 @@ struct SetGame<CardContent> where CardContent: Matchable {
                 // Three cards did not form a set
                 else {
                     indicesOfSelectedCards.forEach {
-                        cards[$0].isSelected = false
                         cards[$0].isNotMatched = false
+                        cards[$0].isSelected = false
                     }
                     cards[chosenIndex].isSelected = true
                 }
@@ -71,14 +74,16 @@ struct SetGame<CardContent> where CardContent: Matchable {
     
     mutating func deal(_ numberOfCards: Int? = nil) {
         let numberOfCardsToRemoveFromDeck = numberOfCards ?? numberOfCardsFromStart
-        guard deck.count >= numberOfCardsToRemoveFromDeck else { return }
+        guard undealtCards.count >= numberOfCardsToRemoveFromDeck else { return }
         
-        if indicesOfMatchedCards.count == 3 {
+        if matchedCards.count == 3 {
             cards = cards.filter { !$0.isMatched }
         }
         
-        for _ in deck[0..<numberOfCardsToRemoveFromDeck] {
-            cards.append(deck.removeLast())
+        for _ in undealtCards[0..<numberOfCardsToRemoveFromDeck] {
+            var newCard = undealtCards.removeLast()
+            newCard.isFaceUp = true
+            cards.append(newCard)
         }
     }
     
@@ -87,26 +92,32 @@ struct SetGame<CardContent> where CardContent: Matchable {
          numberOfCardsToDeal: Int,
          createCardContent: (Int) -> CardContent) {
         
-        deck = []
+        undealtCards = []
         cards = []
+        discardPile = []
         
         self.numberOfCardsFromStart = numberOfCardsFromStart
         self.numberOfCardsToDeal = numberOfCardsToDeal
         
         for index in 0..<numberOfCardsInDeck {
             let content = createCardContent(index)
-            deck.append(Card(id: index, content: content))
+            undealtCards.append(Card(id: index, content: content))
         }
         
-        deck.shuffle()
-        deal()
+        undealtCards.shuffle()
     }
     
-    struct Card: Identifiable {
+    struct Card: Identifiable, Equatable {
         let id: Int
         let content: CardContent
         var isSelected = false
         var isMatched = false
         var isNotMatched = false
+        var isFaceUp = false
+        var isDiscarded = false
+        
+        static func == (lhs: SetGame<CardContent>.Card, rhs: SetGame<CardContent>.Card) -> Bool {
+            lhs.id == rhs.id
+        }
     }
 }
