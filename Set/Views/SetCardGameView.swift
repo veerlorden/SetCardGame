@@ -16,6 +16,7 @@ struct SetCardGameView: View {
         NavigationView {
             VStack {
                 gameBody
+                Divider()
                 HStack {
                     Spacer()
                     deckBody
@@ -23,8 +24,9 @@ struct SetCardGameView: View {
                     discardPileBody
                     Spacer()
                 }
+                .padding(.top)
             }
-            .navigationTitle("SET")
+            .navigationBarTitle("SET", displayMode: .inline)
             .navigationBarItems(leading: Text("Deck: \(game.undealtCards.count)"),
                                 trailing: restartButton)
             .padding(.horizontal)
