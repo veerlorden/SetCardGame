@@ -10,8 +10,8 @@ import SwiftUI
 struct AspectVGrid<Item, ItemView>: View where Item: Identifiable, ItemView: View {
     var items: [Item]
     var aspectRatio: CGFloat
-    var content: (Item) -> ItemView
     var minimumPossibleCardWidth: CGFloat = 55
+    var content: (Item) -> ItemView
     
     var body: some View {
         GeometryReader { geometry in

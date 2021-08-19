@@ -73,6 +73,10 @@ class SetCardGame: ObservableObject {
         model.discardPile
     }
     
+    var matchedCards: [Card] {
+        model.matchedCards
+    }
+    
     // MARK: - Intents
     
     func choose(_ card: Card) {
@@ -80,7 +84,12 @@ class SetCardGame: ObservableObject {
     }
     
     func deal(_ numberOfCards: Int? = nil) {
+        if model.matchedCards.count == 3 { discard() }
         model.deal(numberOfCards)
+    }
+    
+    func discard() {
+        model.discard()
     }
     
     func restart() {

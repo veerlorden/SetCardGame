@@ -11,7 +11,6 @@ struct CardView: View {
     
     let card: SetGame<Deck.SetCard>.Card
     @ObservedObject var game: SetCardGame
-
     
     var body: some View {
         GeometryReader { geometry in
@@ -19,8 +18,8 @@ struct CardView: View {
                 Spacer()
                 ForEach(0..<card.content.numberOfShapes, id: \.self) { index in
                     game.createShape(for: card)
-                        .frame(width: geometry.size.width * DrawingConstants.shapeWidthMultiplier,
-                               height: geometry.size.height * DrawingConstants.shapeHeightMultiplier)
+                        .frame(width: abs(geometry.size.width * DrawingConstants.shapeWidthMultiplier),
+                               height: abs(geometry.size.height * DrawingConstants.shapeHeightMultiplier))
                         .foregroundColor(game.chooseUIColor(for: card.content.color))
                 }
                 Spacer()
@@ -29,12 +28,12 @@ struct CardView: View {
         }
     }
     
-    
     private struct DrawingConstants {
         static let shapeWidthMultiplier: CGFloat = 0.5
         static let shapeHeightMultiplier: CGFloat = 0.15
     }
 }
+
 
 
 struct CardView_Previews: PreviewProvider {

@@ -21,7 +21,7 @@ struct SetGame<CardContent> where CardContent: Matchable {
         cards.indices.filter { cards[$0].isSelected }
     }
     
-    private var matchedCards: [Card] {
+    var matchedCards: [Card] {
         cards.filter { $0.isMatched }
     }
     
@@ -45,13 +45,7 @@ struct SetGame<CardContent> where CardContent: Matchable {
             else if indicesOfSelectedCards.count == 3 {
                 // Three cards formed a set
                 if matchedCards.count == 3 {
-                    indicesOfSelectedCards.forEach {
-                        cards[$0].isDiscarded = true
-                        cards[$0].isSelected = false
-                    }
-                    discardPile += matchedCards
-                    cards = cards.filter { !matchedCards.contains($0) }
-                    
+                    discard()
                     if let selectedCardIndex = cards.firstIndex(where: { $0.id == card.id }) {
                         cards[selectedCardIndex].isSelected = true
                     }
@@ -76,15 +70,20 @@ struct SetGame<CardContent> where CardContent: Matchable {
         let numberOfCardsToRemoveFromDeck = numberOfCards ?? numberOfCardsFromStart
         guard undealtCards.count >= numberOfCardsToRemoveFromDeck else { return }
         
-        if matchedCards.count == 3 {
-            cards = cards.filter { !$0.isMatched }
-        }
-        
         for _ in undealtCards[0..<numberOfCardsToRemoveFromDeck] {
             var newCard = undealtCards.removeLast()
             newCard.isFaceUp = true
             cards.append(newCard)
         }
+    }
+    
+    mutating func discard() {        
+        indicesOfSelectedCards.forEach {
+            cards[$0].isDiscarded = true
+            cards[$0].isSelected = false
+        }
+        discardPile += matchedCards
+        cards = cards.filter { !matchedCards.contains($0) }
     }
     
     init(numberOfCardsInDeck: Int,
@@ -105,6 +104,7 @@ struct SetGame<CardContent> where CardContent: Matchable {
         }
         
         undealtCards.shuffle()
+        deal()
     }
     
     struct Card: Identifiable, Equatable {

@@ -36,8 +36,8 @@ struct SetCardGameView: View {
     var gameBody: some View {
         AspectVGrid (items: game.cards, aspectRatio: CardConstants.aspectRatio) { card in
             CardView(card: card, game: game)
-                .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                 .matchedGeometryEffect(id: card.id, in: discardingNamespace)
+                .matchedGeometryEffect(id: card.id, in: dealingNamespace)
                 .padding(CardConstants.cardPadding)
                 .onTapGesture {
                     withAnimation {
@@ -57,11 +57,7 @@ struct SetCardGameView: View {
             }
             .onTapGesture {
                 withAnimation {
-                    if game.cards.isEmpty {
-                        game.deal()
-                    } else {
-                        game.deal(3)
-                    }
+                    game.deal(3)
                 }
             }
             .frame(width: CardConstants.deckWidth, height: CardConstants.deckHeight)

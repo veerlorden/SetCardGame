@@ -19,7 +19,8 @@ struct Cardify: ViewModifier {
             if isFaceUp {
                 shape
                     .fill(isSelected ? Color("SelectedCardColor") : .white)
-                    .shadow(color: shadowColor, radius: DrawingConstants.cardCornerRadius / 2, x: 0, y: 2)
+                    .shadow(color: shadowColor.opacity(DrawingConstants.shadowColorOpacity),
+                            radius: DrawingConstants.cardCornerRadius / 2, x: 0, y: 2)
             } else {
                 shape
                     .fill(DrawingConstants.cardBackColor)
@@ -32,6 +33,7 @@ struct Cardify: ViewModifier {
     private struct DrawingConstants {
         static let cardBackColor: Color = .blue
         static let cardCornerRadius: CGFloat = 10
+        static let shadowColorOpacity: Double = 0.8
     }
 }
 
