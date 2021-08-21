@@ -29,7 +29,7 @@ struct SetCardGameView: View {
             .navigationBarTitle("SET", displayMode: .inline)
             .navigationBarItems(leading: Text("Deck: \(game.undealtCards.count)"),
                                 trailing: restartButton)
-            .padding(.horizontal)
+            .padding([.horizontal, .top])
         }
     }
     
@@ -57,7 +57,7 @@ struct SetCardGameView: View {
             }
             .onTapGesture {
                 withAnimation {
-                    game.deal(3)
+                    game.deal()
                 }
             }
             .frame(width: CardConstants.deckWidth, height: CardConstants.deckHeight)
@@ -74,8 +74,10 @@ struct SetCardGameView: View {
                     CardView(card: card, game: game)
                         .matchedGeometryEffect(id: card.id, in: discardingNamespace)
                 }
-                RoundedRectangle(cornerRadius: CardConstants.discardCornerRadius)
-                    .strokeBorder(Color.gray)
+                if game.discardPile.isEmpty {
+                    RoundedRectangle(cornerRadius: CardConstants.discardCornerRadius)
+                        .strokeBorder(Color.gray)
+                }
             }
             .frame(width: CardConstants.deckWidth, height: CardConstants.deckHeight)
             

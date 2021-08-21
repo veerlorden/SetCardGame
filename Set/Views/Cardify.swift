@@ -11,19 +11,26 @@ struct Cardify: ViewModifier {
     
     var isFaceUp: Bool
     var isSelected: Bool
+    var isDiscarded: Bool
     var shadowColor: Color
     
     func body(content: Content) -> some View {
         ZStack {
             let shape = RoundedRectangle(cornerRadius: DrawingConstants.cardCornerRadius)
-            if isFaceUp {
-                shape
-                    .fill(isSelected ? Color("SelectedCardColor") : .white)
-                    .shadow(color: shadowColor.opacity(DrawingConstants.shadowColorOpacity),
-                            radius: DrawingConstants.cardCornerRadius / 2, x: 0, y: 2)
+            let faceUpCard = shape
+                .fill(isSelected ? Color("SelectedCardColor") : .white)
+                .shadow(color: shadowColor, radius: DrawingConstants.cardCornerRadius / 2, x: 0, y: 2)
+            let faceDownCard = shape.fill(Color.green)
+            let border = shape.stroke(lineWidth: 0.5)
+            
+            if isDiscarded {
+                faceUpCard
+                border
+            } else if isFaceUp {
+                faceUpCard
             } else {
-                shape
-                    .fill(DrawingConstants.cardBackColor)
+                faceDownCard
+                border
             }
             content
                 .opacity(isFaceUp ? 1 : 0)
@@ -31,14 +38,12 @@ struct Cardify: ViewModifier {
     }
     
     private struct DrawingConstants {
-        static let cardBackColor: Color = .blue
         static let cardCornerRadius: CGFloat = 10
-        static let shadowColorOpacity: Double = 0.8
     }
 }
 
 extension View {
-    func cardify(isFaceUp: Bool, isSelected: Bool, shadowColor: Color) -> some View {
-        self.modifier(Cardify(isFaceUp: isFaceUp, isSelected: isSelected, shadowColor: shadowColor))
+    func cardify(isFaceUp: Bool, isSelected: Bool, isDiscarded: Bool, shadowColor: Color) -> some View {
+        self.modifier(Cardify(isFaceUp: isFaceUp, isSelected: isSelected, isDiscarded: isDiscarded, shadowColor: shadowColor))
     }
 }

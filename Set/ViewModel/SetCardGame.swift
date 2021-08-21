@@ -84,8 +84,16 @@ class SetCardGame: ObservableObject {
     }
     
     func deal(_ numberOfCards: Int? = nil) {
-        if model.matchedCards.count == 3 { discard() }
-        model.deal(numberOfCards)
+        if matchedCards.count == 3 {
+            self.discard()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                withAnimation {
+                    self.model.deal(3)
+                }
+            }
+        } else {
+            self.model.deal(3)
+        }
     }
     
     func discard() {

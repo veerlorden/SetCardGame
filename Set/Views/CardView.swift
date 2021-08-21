@@ -24,8 +24,25 @@ struct CardView: View {
                 }
                 Spacer()
             }
-            .cardify(isFaceUp: card.isFaceUp, isSelected: card.isSelected, shadowColor: game.chooseShadowColor(for: card))
+            .cardify(isFaceUp: card.isFaceUp, isSelected: card.isSelected, isDiscarded: card.isDiscarded, shadowColor: game.chooseShadowColor(for: card))
+            .rotationEffect(rotationAngle(for: card))
         }
+    }
+    
+    private func rotationAngle(for card: SetGame<Deck.SetCard>.Card) -> Angle {
+        if !card.isFaceUp {
+            if let firstCard = game.undealtCards.first,
+               firstCard == card {
+                return Angle(degrees: 9)
+            }
+        } else if card.isDiscarded {
+            if let firstCard = game.discardPile.first,
+               firstCard == card {
+                return Angle(degrees: -9)
+            }
+        }
+        
+        return Angle(degrees: 0)
     }
     
     private struct DrawingConstants {
