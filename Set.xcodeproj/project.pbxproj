@@ -72,9 +72,10 @@
 		DD4C57DB2690C2C500A98F32 /* Set */ = {
 			isa = PBXGroup;
 			children = (
-				DD78FBF726A9F30F00146DB0 /* ViewModel */,
-				DDA0AEF5269C993000112766 /* Model */,
 				DDA0AEF4269C992000112766 /* Views */,
+				DDA0AEF8269CBC9100112766 /* SetCardGame.swift */,
+				DDA0AEF6269C99B300112766 /* Deck.swift */,
+				DD78FBF826AAC51500146DB0 /* SetGame.swift */,
 				DD4C57DC2690C2C500A98F32 /* SetApp.swift */,
 				DD4C57E02690C2C700A98F32 /* Assets.xcassets */,
 				DD4C57E52690C2C700A98F32 /* Info.plist */,
@@ -91,14 +92,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		DD78FBF726A9F30F00146DB0 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				DDA0AEF8269CBC9100112766 /* SetCardGame.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		DDA0AEF4269C992000112766 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,15 +105,6 @@
 				DDA7C2E226C6BD37009CF65B /* Cardify.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		DDA0AEF5269C993000112766 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				DDA0AEF6269C99B300112766 /* Deck.swift */,
-				DD78FBF826AAC51500146DB0 /* SetGame.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
