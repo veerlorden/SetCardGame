@@ -14,6 +14,11 @@ and the remaining card showing a different version.
 - Animation
 
 ## Screenshots
+<div align="center">
+    <img style="width: 25%;" src="https://github.com/veerlorden/set-card-game/blob/main/Screenshots/set1.png" alt="set-screen">
+    <img style="width: 25%;" src="https://github.com/veerlorden/set-card-game/blob/main/Screenshots/set2.png" alt="set-screen">
+    <img style="width: 25%;" src="https://github.com/veerlorden/set-card-game/blob/main/Screenshots/set4.png" alt="set-screen">
+</div>
 
 ## Sample Code
 ```swift
