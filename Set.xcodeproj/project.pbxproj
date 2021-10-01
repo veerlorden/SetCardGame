@@ -17,6 +17,10 @@
 		DD4C57E12690C2C700A98F32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4C57E02690C2C700A98F32 /* Assets.xcassets */; };
 		DD4C57E42690C2C700A98F32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD4C57E32690C2C700A98F32 /* Preview Assets.xcassets */; };
 		DD78FBF926AAC51500146DB0 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD78FBF826AAC51500146DB0 /* SetGame.swift */; };
+		DD9232B42707D19B003CE1FE /* set3.png in Resources */ = {isa = PBXBuildFile; fileRef = DD9232B02707D19B003CE1FE /* set3.png */; };
+		DD9232B52707D19B003CE1FE /* set1.png in Resources */ = {isa = PBXBuildFile; fileRef = DD9232B12707D19B003CE1FE /* set1.png */; };
+		DD9232B62707D19B003CE1FE /* set4.png in Resources */ = {isa = PBXBuildFile; fileRef = DD9232B22707D19B003CE1FE /* set4.png */; };
+		DD9232B72707D19B003CE1FE /* set2.png in Resources */ = {isa = PBXBuildFile; fileRef = DD9232B32707D19B003CE1FE /* set2.png */; };
 		DDA0AEF3269C96C000112766 /* AspectVGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0AEF2269C96C000112766 /* AspectVGrid.swift */; };
 		DDA0AEF7269C99B300112766 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0AEF6269C99B300112766 /* Deck.swift */; };
 		DDA0AEF9269CBC9100112766 /* SetCardGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA0AEF8269CBC9100112766 /* SetCardGame.swift */; };
@@ -36,6 +40,10 @@
 		DD4C57E32690C2C700A98F32 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DD4C57E52690C2C700A98F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD78FBF826AAC51500146DB0 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
+		DD9232B02707D19B003CE1FE /* set3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set3.png; sourceTree = "<group>"; };
+		DD9232B12707D19B003CE1FE /* set1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set1.png; sourceTree = "<group>"; };
+		DD9232B22707D19B003CE1FE /* set4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set4.png; sourceTree = "<group>"; };
+		DD9232B32707D19B003CE1FE /* set2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set2.png; sourceTree = "<group>"; };
 		DDA0AEF2269C96C000112766 /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		DDA0AEF6269C99B300112766 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		DDA0AEF8269CBC9100112766 /* SetCardGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCardGame.swift; sourceTree = "<group>"; };
@@ -56,6 +64,7 @@
 		DD4C57D02690C2C500A98F32 = {
 			isa = PBXGroup;
 			children = (
+				DD9232AF2707D0E5003CE1FE /* Screenshots */,
 				DD4C57DB2690C2C500A98F32 /* Set */,
 				DD4C57DA2690C2C500A98F32 /* Products */,
 			);
@@ -90,6 +99,17 @@
 				DD4C57E32690C2C700A98F32 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DD9232AF2707D0E5003CE1FE /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				DD9232B12707D19B003CE1FE /* set1.png */,
+				DD9232B32707D19B003CE1FE /* set2.png */,
+				DD9232B02707D19B003CE1FE /* set3.png */,
+				DD9232B22707D19B003CE1FE /* set4.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 		DDA0AEF4269C992000112766 /* Views */ = {
@@ -164,8 +184,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD9232B52707D19B003CE1FE /* set1.png in Resources */,
+				DD9232B62707D19B003CE1FE /* set4.png in Resources */,
 				DD4C57E42690C2C700A98F32 /* Preview Assets.xcassets in Resources */,
 				DD4C57E12690C2C700A98F32 /* Assets.xcassets in Resources */,
+				DD9232B42707D19B003CE1FE /* set3.png in Resources */,
+				DD9232B72707D19B003CE1FE /* set2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
